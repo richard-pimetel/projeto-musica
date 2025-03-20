@@ -17,11 +17,15 @@ const ERRO_NOT_FOUND = {status: false, status_code: 404, message: 'Não foram en
 /***************MENSAGENS DE SUCESSO ****************/
 
 const SUCCESS_CREATED_ITEM = {status: true, status_code: 201, message: 'Iem criado comsuceso!!!'}
+const SUCCESS_DELETE_ITEM = {status: true, status_code: 200, message: 'Iem excluído comsuceso!!!'}
+const SUCCESS_UPDATED_ITEM = {status: true, status_code: 200, message: 'Iem atualizado comsuceso!!!'}
 module.exports = {
     ERROR_REQUIRE_FIELDS,
     ERROR_INTERNAL_SERVER_MODEL,
     SUCCESS_CREATED_ITEM,
     ERROR_INTERNAL_SERVER_CONTROLLER,
     ERRO_CONTENT_TYPE,
-    ERRO_NOT_FOUND
+    ERRO_NOT_FOUND,
+    SUCCESS_DELETE_ITEM,
+    SUCCESS_UPDATED_ITEM
 }

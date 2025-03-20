@@ -49,13 +49,50 @@ try {
 }
 
 //função para atualizar uma música existente no banco de dados
-const updateMusica = async function(){
+const updateMusica = async function(musica){
+    try {
+        
+        let sql = `update tbl_musica set nome =              '${musica.nome}',
+                                         link =              '${musica.link}',
+                                         duracao =           '${musica.duracao}',
+                                         data_lancamento =   '${musica.data_lancamento}',
+                                         foto_capa =         '${musica.foto_capa}',
+                                         letra =             '${musica.letra}'
+        where id=${musica.id}`
+        let result = await prisma.$executeRawUnsafe(sql)
+
+        if(result){
+            return true
+        }else{
+            return false
+        }
+
+    } catch (error) {
+        return false
+    }
 
 }
 
 //função para excluir uma música existente no banco de dados
-const deleteMusica = async function(){
-
+const deleteMusica = async function(id){
+    try {
+       
+        //Script SQL 
+        let sql = 'delete from tbl_musica where id='+id
+    
+    
+        //Exeuta o script SQL no BD e aguada o retorno dos daods 
+        let result = await prisma.$executeRawUnsafe(sql)
+    
+        if(result)
+            return true
+        else 
+            return false
+    
+    
+    } catch (error) {
+        return false 
+    }
 }
 
 //função para retornar todas as músicas do banco de dados
@@ -81,27 +118,27 @@ try {
 }
 
 //função para listar uma música pelo ID no banco de dados
-const selectByIdMusica = async function(){
-
+const selectByIdMusica = async function(id){
     try {
-        
-        
+       
+    //Script SQL 
+    let sql = 'select * from tbl_musica where id='+id
 
 
+    //Exeuta o script SQL no BD e aguada o retorno dos daods 
+    let result = await prisma.$queryRawUnsafe(sql)
+
+    if(result)
+        return result
+    else 
+        return false
 
 
-
-
-    } catch (error) {
-        
-    }
-
-
-
-
-
-
+} catch (error) {
+    return false 
 }
+}
+
 
 module.exports = {
     insertMusica,
